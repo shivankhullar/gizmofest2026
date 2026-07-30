@@ -8,6 +8,14 @@
 <meta property="og:title" content="GIZMOfest 2026">
 <meta property="og:description" content="A meeting for users and developers of the GIZMO simulation code.">
 <meta property="og:type" content="website">
+<!-- og:image must be an absolute URL, so it carries the live site address.
+     Update this if the repo or account name ever changes. -->
+<meta property="og:image" content="https://shivankhullar.github.io/gizmofest2026/assets/logo.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<!-- Icons are the black-hole emblem cropped square out of the logo — the full
+     wordmark is too wide to read at favicon size. -->
+<link rel="icon" href="assets/favicon.png" sizes="512x512" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -28,7 +36,15 @@
 
 <header id="top">
   <div class="wrap">
-    <h1>GIZMOfest 2026</h1>
+    <!-- The logo is the wordmark, so the <h1> is visually hidden rather than
+         deleted: screen readers, search engines, and the print stylesheet all
+         still get the event name as text. alt="" is deliberate — the h1 already
+         announces the name, so describing the image too would say it twice. -->
+    <h1 class="visually-hidden">GIZMOfest 2026</h1>
+    <picture class="logo">
+      <source srcset="assets/logo.webp" type="image/webp">
+      <img src="assets/logo.jpg" width="1600" height="711" alt="" decoding="async">
+    </picture>
     <p class="tagline">A meeting for users and developers of the GIZMO simulation code.</p>
     <p class="hero-meta">
       <span class="tbd">TBD — Month YYYY</span>

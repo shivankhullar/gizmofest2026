@@ -1,16 +1,26 @@
 /* GIZMOfest 2026 — all styling. No web fonts, no external requests. */
 
+/* Colours are sampled from assets/logo.jpg so the header and the logo are the
+   same artwork rather than two things that nearly match:
+     --header-bg  #13161f  the logo's flat background, exact
+     --logo-orange #d07143 the logo's accent, used only on the dark header
+     --accent     #ad5e38  that orange darkened to 4.57:1 on --paper, so links
+                           and buttons pass WCAG AA (the raw orange is 3.31:1)
+   To go back to the previous blue scheme, set --accent/--accent-dk to
+   #2a5f8f/#1d4468 — nothing else depends on the hue. */
+
 :root {
-  --ink:        #14161c;
-  --ink-soft:   #4a5160;
-  --ink-faint:  #8a91a0;
-  --paper:      #fbfbf9;
-  --rule:       #e2e2dd;
-  --accent:     #2a5f8f;
-  --accent-dk:  #1d4468;
-  --header-bg:  #171a24;
-  --nav-h:      3.25rem;
-  --measure:    46rem;
+  --ink:         #14161c;
+  --ink-soft:    #4a5160;
+  --ink-faint:   #8a91a0;
+  --paper:       #fbfbf9;
+  --rule:        #e2e2dd;
+  --accent:      #ad5e38;
+  --accent-dk:   #8a4b2d;
+  --header-bg:   #13161f;
+  --logo-orange: #d07143;
+  --nav-h:       3.25rem;
+  --measure:     46rem;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -92,27 +102,39 @@ nav {
 /* ---------- header / hero ---------- */
 
 header {
+  /* Flat, and exactly the logo's own background colour — the logo is a JPEG
+     with baked-in background, so any gradient or near-miss colour here would
+     show up as a visible rectangle around it. Do not add a gradient. */
   background: var(--header-bg);
   color: #fff;
-  padding: 4rem 0 3.25rem;
-  /* subtle depth, no images */
-  background-image: radial-gradient(
-    ellipse 120% 80% at 50% -20%,
-    #263050 0%,
-    var(--header-bg) 70%
-  );
+  /* Modest padding — the logo JPEG carries a lot of its own internal margin,
+     so generous padding here reads as an oversized empty header. */
+  padding: 1.5rem 0 2.75rem;
 }
 
-header h1 {
-  margin: 0;
-  font-size: clamp(2.25rem, 7vw, 3.5rem);
-  line-height: 1.1;
-  letter-spacing: -0.025em;
-  font-weight: 700;
+/* The logo carries the event name visually; the <h1> text is kept for screen
+   readers, search engines, and print. */
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.logo { display: block; }
+
+.logo img {
+  display: block;
+  width: 100%;
+  max-width: 34rem;   /* ~544px; the 1600px asset stays sharp on retina */
+  height: auto;
 }
 
 .tagline {
-  margin: 0.85rem 0 0;
+  margin: 0.25rem 0 0;   /* small: the logo image already ends in whitespace */
   font-size: 1.1875rem;
   color: #c8cede;
   max-width: 34rem;
@@ -126,7 +148,8 @@ header h1 {
 
 .hero-meta .sep { margin: 0 0.5rem; opacity: 0.5; }
 
-header .tbd { color: #d8c9a0; border-bottom-color: #7a6a45; }
+/* placeholders on the dark header, tinted toward the logo's orange */
+header .tbd { color: var(--logo-orange); border-bottom-color: #7d4529; }
 
 /* ---------- sections ---------- */
 
@@ -267,8 +290,8 @@ footer {
 @media (max-width: 40rem) {
   body { font-size: 1rem; }
 
-  header { padding: 2.75rem 0 2.25rem; }
-  .tagline { font-size: 1.0625rem; }
+  header { padding: 1rem 0 2rem; }
+  .tagline { font-size: 1.0625rem; margin-top: 0.25rem; }
   .hero-meta { font-size: 0.9375rem; }
   .hero-meta .sep { display: none; }
   .hero-meta > span { display: block; }
@@ -290,10 +313,23 @@ footer {
   body { font-size: 11pt; background: #fff; color: #000; }
   header {
     background: #fff !important;
-    background-image: none !important;
     color: #000;
     padding: 0 0 1rem;
   }
+
+  /* The logo is a dark-background JPEG — printing it would lay down a big block
+     of ink. Drop it and un-hide the <h1> text in its place. */
+  .logo { display: none; }
+  .visually-hidden {
+    position: static;
+    width: auto; height: auto;
+    margin: 0;
+    overflow: visible;
+    clip-path: none;
+    font-size: 20pt;
+    line-height: 1.15;
+  }
+
   .tagline, .hero-meta, header .tbd { color: #000; }
   section { padding: 1rem 0; break-inside: avoid; }
   a { color: #000; text-decoration: none; }
