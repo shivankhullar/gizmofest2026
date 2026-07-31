@@ -1,11 +1,15 @@
-/* GIZMOfest 2026 — all styling. No web fonts, no external requests. */
+/* GIZMOfest 2026 — all styling. No web fonts, no external requests.
 
-/* Colours are sampled from assets/logo.jpg so the header and the logo are the
+   Layout: two columns. A dark, sticky left panel carries the logo and the
+   section links; the content scrolls on the right. Below --break the grid
+   collapses to a single column and the panel just sits at the top.
+
+   Colours are sampled from assets/logo.jpg so the panel and the logo are the
    same artwork rather than two things that nearly match:
-     --header-bg  #13161f  the logo's flat background, exact
-     --logo-orange #d07143 the logo's accent, used only on the dark header
-     --accent     #ad5e38  that orange darkened to 4.57:1 on --paper, so links
-                           and buttons pass WCAG AA (the raw orange is 3.31:1)
+     --panel-bg    #13161f  the logo's flat background, exact
+     --logo-orange #d07143  the logo's accent, used only on the dark panel
+     --accent      #ad5e38  that orange darkened to 4.57:1 on --paper, so links
+                            and buttons pass WCAG AA (the raw orange is 3.31:1)
    To go back to the previous blue scheme, set --accent/--accent-dk to
    #2a5f8f/#1d4468 — nothing else depends on the hue. */
 
@@ -17,10 +21,9 @@
   --rule:        #e2e2dd;
   --accent:      #ad5e38;
   --accent-dk:   #8a4b2d;
-  --header-bg:   #13161f;
+  --panel-bg:    #13161f;
   --logo-orange: #d07143;
-  --nav-h:       3.25rem;
-  --measure:     46rem;
+  --measure:     34rem;   /* comfortable reading width for the content column */
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -40,80 +43,33 @@ body {
   line-height: 1.7;
 }
 
-.wrap {
-  max-width: var(--measure);
-  margin: 0 auto;
-  padding: 0 1.25rem;
+/* ============================================================
+   Two-column shell
+   ============================================================ */
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr;   /* single column by default; split at --break */
+  min-height: 100vh;
 }
 
-/* ---------- nav ---------- */
-
-nav {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background: rgba(251, 251, 249, 0.94);
-  backdrop-filter: saturate(150%) blur(6px);
-  border-bottom: 1px solid var(--rule);
-}
-
-.nav-inner {
-  max-width: var(--measure);
-  margin: 0 auto;
-  padding: 0 1.25rem;
-  min-height: var(--nav-h);
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.4rem 1.25rem;
-}
-
-.nav-brand {
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  color: var(--ink);
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-.nav-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem 1rem;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  font-size: 0.9375rem;
-}
-
-.nav-links a {
-  color: var(--ink-soft);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  padding-bottom: 1px;
-}
-
-.nav-links a:hover,
-.nav-links a:focus-visible {
-  color: var(--accent);
-  border-bottom-color: var(--accent);
-}
-
-/* ---------- header / hero ---------- */
-
-header {
-  /* Flat, and exactly the logo's own background colour — the logo is a JPEG
-     with baked-in background, so any gradient or near-miss colour here would
-     show up as a visible rectangle around it. Do not add a gradient. */
-  background: var(--header-bg);
+/* The panel is the grid item, so its dark background fills the entire left
+   column for the full height of the page however long the content gets. */
+.panel {
+  background: var(--panel-bg);
   color: #fff;
-  /* Modest padding — the logo JPEG carries a lot of its own internal margin,
-     so generous padding here reads as an oversized empty header. */
-  padding: 1.5rem 0 2.75rem;
 }
 
-/* The logo carries the event name visually; the <h1> text is kept for screen
-   readers, search engines, and print. */
+.panel-inner {
+  padding: 2rem 1.5rem 2.25rem;
+}
+
+/* ============================================================
+   Logo
+   ============================================================ */
+
+/* Visually hidden, not deleted: the logo carries the event name as pixels, so
+   the text has to live somewhere for screen readers, search engines, and print. */
 .visually-hidden {
   position: absolute;
   width: 1px; height: 1px;
@@ -129,39 +85,85 @@ header {
 .logo img {
   display: block;
   width: 100%;
-  max-width: 34rem;   /* ~544px; the 1600px asset stays sharp on retina */
   height: auto;
+  max-width: 30rem;   /* single-column cap; the split layout overrides this */
 }
+
+/* ============================================================
+   Panel text
+   ============================================================ */
 
 .tagline {
-  margin: 0.25rem 0 0;   /* small: the logo image already ends in whitespace */
-  font-size: 1.1875rem;
+  margin: 0.5rem 0 0;
+  font-size: 1.0625rem;
   color: #c8cede;
-  max-width: 34rem;
+  max-width: 30rem;
 }
+
+.tagline:empty { display: none; }   /* no gap while it has no text */
 
 .hero-meta {
-  margin: 1.75rem 0 0;
-  font-size: 1rem;
-  color: #a8b0c4;
+  margin: 1rem 0 0;
+  font-size: 1.0625rem;
+  line-height: 1.5;
 }
 
-.hero-meta .sep { margin: 0 0.5rem; opacity: 0.5; }
+.hero-date {
+  display: block;
+  color: #fff;
+  font-weight: 600;
+}
 
-/* placeholders on the dark header, tinted toward the logo's orange */
-header .tbd { color: var(--logo-orange); border-bottom-color: #7d4529; }
+.hero-place {
+  display: block;
+  color: #9aa3b8;
+}
 
-/* ---------- sections ---------- */
+/* ============================================================
+   Section links in the panel
+   ============================================================ */
 
-main { padding: 1rem 1.25rem 3rem; }
+.section-nav { margin-top: 2rem; }
+
+.section-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+}
+
+.section-nav a {
+  display: block;
+  padding: 0.3rem 0;
+  color: #b9c0d0;
+  text-decoration: none;
+  font-size: 1rem;
+  border-left: 2px solid transparent;
+  transition: color 120ms ease;
+}
+
+.section-nav a:hover,
+.section-nav a:focus-visible {
+  color: var(--logo-orange);
+}
+
+/* ============================================================
+   Content column
+   ============================================================ */
+
+.content {
+  padding: 0 1.5rem;
+  min-width: 0;   /* lets the grid column shrink instead of forcing overflow */
+}
 
 section {
-  padding: 2.75rem 0;
+  max-width: var(--measure);
+  padding: 2.5rem 0;
   border-bottom: 1px solid var(--rule);
-  scroll-margin-top: calc(var(--nav-h) + 1rem);
+  scroll-margin-top: 1rem;
 }
-
-section:last-child { border-bottom: 0; }
 
 h2 {
   margin: 0 0 1.25rem;
@@ -188,13 +190,9 @@ p:last-child { margin-bottom: 0; }
 a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
 a:hover { color: var(--accent-dk); }
 
-/* prose inside the rationale, styled up-front so pasted text needs no CSS work */
-
-#rationale p { max-width: 40rem; }
-
+/* Prose inside the rationale, styled up-front so pasted text needs no CSS work. */
 #rationale ul,
 #rationale ol {
-  max-width: 40rem;
   margin: 0 0 1.1rem;
   padding-left: 1.35rem;
 }
@@ -208,7 +206,7 @@ a:hover { color: var(--accent-dk); }
 .dates {
   margin: 0;
   display: grid;
-  grid-template-columns: minmax(11rem, max-content) 1fr;
+  grid-template-columns: minmax(10rem, max-content) 1fr;
   gap: 0.1rem 1.5rem;
   align-items: baseline;
 }
@@ -266,9 +264,10 @@ a:hover { color: var(--accent-dk); }
 .button .tbd { color: inherit; }
 
 /* ---------- placeholders ----------
-   Everything you still need to fill in. Find them all with:
+   Everything still to be filled in. Find them all with:
      grep -n 'class="tbd"' index.html
-   Delete the class (and the TBD text) as you replace each one.        */
+   Delete the class along with the TBD text as you replace each one, or it will
+   keep rendering as a grey italic placeholder.                          */
 
 .tbd {
   color: var(--ink-faint);
@@ -279,25 +278,125 @@ a:hover { color: var(--accent-dk); }
 /* ---------- footer ---------- */
 
 footer {
-  border-top: 1px solid var(--rule);
+  max-width: var(--measure);
   padding: 1.75rem 0 2.5rem;
   font-size: 0.9375rem;
   color: var(--ink-faint);
 }
 
-/* ---------- narrow screens ---------- */
+/* ============================================================
+   Split layout — wide screens only
+   ============================================================ */
+
+@media (min-width: 62rem) {
+  .layout {
+    grid-template-columns: 1fr 1fr;   /* the two halves */
+  }
+
+  /* Pinned: the logo stays in view while the right column scrolls past.
+     dvh first so mobile browser chrome does not clip it, vh as the fallback. */
+  .panel-inner {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    height: 100dvh;
+    padding: 2.5rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* If the viewport is too short for logo + links, scroll inside the panel
+       rather than letting the links spill out of view. */
+    overflow-y: auto;
+  }
+
+  /* Big: fills the panel width, and as tall as the leftover vertical space
+     allows. The 28rem subtracted is the measured height of everything else in
+     the panel — the two meta lines, the six section links, and the padding came
+     to 439px — so the logo automatically gives back height on a short window
+     instead of pushing the last link out of view. Self-adjusting, which beats
+     guessing viewport-height breakpoints.
+
+     If you add or remove section links, this number needs to move with them:
+     roughly 2.5rem per link. The check is that .panel-inner never scrolls, i.e.
+     scrollHeight == clientHeight at every window height.
+
+     The max() stops it collapsing to nothing on an extremely short window; the
+     panel's overflow-y is the safety net in that case. */
+  .logo img {
+    max-width: 100%;
+    max-height: max(6rem, calc(100vh - 28rem));
+    max-height: max(6rem, calc(100dvh - 28rem));
+    object-fit: contain;
+    object-position: left center;
+  }
+
+  .tagline,
+  .hero-meta { font-size: 1.125rem; }
+
+  .hero-meta { margin-top: 1.5rem; }
+
+  /* Stacked list rather than a wrapped row, and each link gets a rule on the
+     left that fills in on hover. */
+  .section-nav { margin-top: 2.5rem; }
+
+  .section-nav ul {
+    display: block;
+  }
+
+  .section-nav a {
+    padding: 0.4rem 0 0.4rem 0.9rem;
+    border-left: 2px solid rgba(255, 255, 255, 0.14);
+    font-size: 1.0625rem;
+  }
+
+  .section-nav a:hover,
+  .section-nav a:focus-visible {
+    border-left-color: var(--logo-orange);
+  }
+
+  .content {
+    padding: 4.5rem 3rem 3rem;
+  }
+
+  section { padding: 3rem 0; }
+
+  section:first-child { padding-top: 0; }
+}
+
+/* Short windows — tighten the fixed-height parts so the self-adjusting logo
+   above has more to work with. */
+@media (min-width: 62rem) and (max-height: 40rem) {
+  .panel-inner { padding: 1.25rem 3rem; }
+  .hero-meta { margin-top: 0.75rem; font-size: 1rem; }
+  .section-nav { margin-top: 1rem; }
+  .section-nav a { padding: 0.15rem 0 0.15rem 0.9rem; font-size: 0.9375rem; }
+  /* This tier trims the overhead to ~400px, so the logo can keep more height. */
+  .logo img {
+    max-height: max(4rem, calc(100vh - 26rem));
+    max-height: max(4rem, calc(100dvh - 26rem));
+  }
+}
+
+/* Roomier once there is space for it. */
+@media (min-width: 90rem) {
+  .panel-inner { padding: 3rem 4.5rem; }
+  .content     { padding: 5.5rem 4.5rem 4rem; }
+}
+
+/* ============================================================
+   Narrow screens
+   ============================================================ */
 
 @media (max-width: 40rem) {
   body { font-size: 1rem; }
 
-  header { padding: 1rem 0 2rem; }
-  .tagline { font-size: 1.0625rem; margin-top: 0.25rem; }
-  .hero-meta { font-size: 0.9375rem; }
-  .hero-meta .sep { display: none; }
-  .hero-meta > span { display: block; }
+  .panel-inner { padding: 1.5rem 1.25rem 1.75rem; }
+  .content { padding: 0 1.25rem; }
 
-  section { padding: 2.25rem 0; }
   h2 { font-size: 1.4375rem; }
+  section { padding: 2rem 0; }
+
+  .hero-meta { font-size: 1rem; }
 
   /* stack each date under its label */
   .dates { grid-template-columns: 1fr; gap: 0; }
@@ -305,21 +404,36 @@ footer {
   .dates dd { padding-top: 0.1rem; padding-bottom: 0.9rem; }
 }
 
-/* ---------- print ---------- */
+/* ============================================================
+   Print
+   ============================================================ */
 
 @media print {
-  nav, .button { display: none; }
   html { scroll-behavior: auto; }
   body { font-size: 11pt; background: #fff; color: #000; }
-  header {
+
+  /* Collapse to one column and drop the panel's dark fill — printing it would
+     lay down a full-page block of ink. */
+  .layout { display: block; }
+
+  .panel {
     background: #fff !important;
     color: #000;
-    padding: 0 0 1rem;
   }
 
-  /* The logo is a dark-background JPEG — printing it would lay down a big block
-     of ink. Drop it and un-hide the <h1> text in its place. */
-  .logo { display: none; }
+  .panel-inner {
+    position: static;
+    height: auto;
+    padding: 0 0 1rem;
+    display: block;
+    overflow: visible;
+  }
+
+  /* The logo is a dark-background JPEG, so drop it and un-hide the <h1> text. */
+  .logo,
+  .section-nav,
+  .button { display: none; }
+
   .visually-hidden {
     position: static;
     width: auto; height: auto;
@@ -330,14 +444,21 @@ footer {
     line-height: 1.15;
   }
 
-  .tagline, .hero-meta, header .tbd { color: #000; }
-  section { padding: 1rem 0; break-inside: avoid; }
+  .tagline, .hero-meta, .hero-date, .hero-place { color: #000; }
+
+  .content { padding: 0; }
+  section { padding: 1rem 0; break-inside: avoid; max-width: none; }
+  footer { max-width: none; }
+
   a { color: #000; text-decoration: none; }
   a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 9pt; }
 }
 
-/* ---------- respect reduced-motion ---------- */
+/* ============================================================
+   Reduced motion
+   ============================================================ */
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .section-nav a { transition: none; }
 }

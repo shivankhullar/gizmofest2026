@@ -13,9 +13,27 @@ programme/    the schedule PDF goes here
 .nojekyll     tells GitHub Pages to serve the files as-is
 ```
 
+## Layout
+
+Two columns, defined in the `@media (min-width: 62rem)` block of `style.css`:
+
+- a dark **panel** on the left with the logo, the dates, and the section links.
+  Its inner div is `position: sticky`, so the logo stays put while you scroll.
+- the **content** column on the right, which scrolls normally.
+
+Below 62rem (992px) the grid collapses to a single column: the panel sits at the
+top with the section links as a wrapped row, and the content follows underneath.
+
+The logo's height is `calc(100dvh - 28rem)` — the 28rem is the measured height of
+everything else in the panel, so the logo automatically gives back space on a
+short window instead of pushing the last section link out of view. **If you add
+or remove section links, move that number by about 2.5rem per link.** The test is
+that `.panel-inner` never needs to scroll (`scrollHeight == clientHeight`) at any
+window height.
+
 ## The logo
 
-The header logo is the wordmark, so the `<h1>GIZMOfest 2026</h1>` next to it is
+The logo is the wordmark, so the `<h1>GIZMOfest 2026</h1>` next to it is
 visually hidden rather than deleted — screen readers, search engines, and the
 print stylesheet still get the name as text. The image is `alt=""` on purpose:
 the `<h1>` already announces the name, so giving the image alt text too would
@@ -32,10 +50,10 @@ say it twice.
 Two things in `style.css` are sampled directly from the logo and will look wrong
 if you swap in different artwork:
 
-- `--header-bg: #13161f` is the logo's own background colour, **exactly**. The
+- `--panel-bg: #13161f` is the logo's own background colour, **exactly**. The
   logo is a JPEG with the dark background baked in, so if this drifts even
   slightly you get a visible rectangle around it. There is deliberately no
-  gradient on the header for the same reason.
+  gradient on the panel for the same reason.
 - `--accent: #ad5e38` is the logo's orange (`#d07143`) darkened until it reaches
   4.57:1 contrast on the page background, which is what WCAG AA needs for text.
   The raw orange is only 3.31:1 and fails, so don't use it for links.
@@ -47,7 +65,7 @@ if you swap in different artwork:
    sips -Z 1600 -s format jpeg -s formatOptions 82 assets/logo-original.jpg --out assets/logo.jpg
    cwebp -q 86 assets/logo.jpg -o assets/logo.webp
    ```
-2. Re-sample its background colour and set `--header-bg` to match, or the seam
+2. Re-sample its background colour and set `--panel-bg` to match, or the seam
    will show.
 3. If the new logo does **not** contain the event name, remove
    `class="visually-hidden"` from the `<h1>` so the name is visible again.
@@ -94,11 +112,11 @@ git push
 Using that exact filename means you never have to edit the link again — later
 versions of the schedule just overwrite the same file.
 
-## Open registration
+## Open the RSVP form
 
-In `<section id="registration">`, set the button's `href` to the registration
-form URL (Google Form, Indico, …) and delete `class="disabled"` from the link so
-it becomes clickable.
+In `<section id="RSVP">`, set the button's `href` to the form URL (Google Form,
+Indico, …), replace the `TBD — form link` text, and delete `class="disabled"`
+from the link so it becomes clickable.
 
 ## Publish changes
 

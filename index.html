@@ -7,13 +7,13 @@
 <!-- The event goes by both names. The logo reads "GIZMO Workshop 2026" but that
      text is inside a JPEG, so it is invisible to search engines — naming both
      here is what makes the site findable either way. Not shown on the page. -->
-<meta name="description" content="GIZMOfest 2026, also known as the GIZMO Workshop 2026 — a meeting for users and developers of the GIZMO simulation code.">
+<meta name="description" content="GIZMOfest 2026, also known as the GIZMO Workshop 2026 — a meeting for users and developers of the GIZMO simulation code. October 12-14, 2026, Flatiron Institute, New York.">
 <meta name="keywords" content="GIZMOfest, GIZMOfest 2026, GIZMO Workshop, GIZMO Workshop 2026, GIZMO, simulation code, hydrodynamics">
 <meta property="og:title" content="GIZMOfest 2026 (GIZMO Workshop 2026)">
 <!-- og:description is a meta tag that provides a brief description of the page.
      This is used by social media platforms and search engines to display a snippet
      of the page's content. -->
-<meta property="og:description" content="A meeting for users and developers of the GIZMO simulation code.">
+<meta property="og:description" content="A meeting for users and developers of the GIZMO simulation code. October 12-14, 2026, Flatiron Institute, New York.">
 <meta property="og:type" content="website">
 <!-- og:image must be an absolute URL, so it carries the live site address.
      Update this if the repo or account name ever changes. -->
@@ -27,142 +27,146 @@
 </head>
 <body>
 
-<nav>
-  <div class="nav-inner">
-    <a class="nav-brand" href="#top">GIZMOfest 2026</a>
-    <ul class="nav-links">
-      <li><a href="#rationale">Rationale</a></li>
-      <li><a href="#dates">Dates</a></li>
-      <li><a href="#programme">Programme</a></li>
-      <li><a href="#venue">Venue</a></li>
-      <li><a href="#RSVP">RSVP</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </div>
-</nav>
+<!-- Two-column layout: a dark left panel holding the logo and the section links,
+     and a scrolling column of content on the right. The panel is sticky, so the
+     logo stays put while the right side scrolls. Below 62rem the whole thing
+     collapses to one column and the panel simply sits at the top. -->
+<div class="layout">
 
-<header id="top">
-  <div class="wrap">
-    <!-- The logo is the wordmark, so the <h1> is visually hidden rather than
-         deleted: screen readers, search engines, and the print stylesheet all
-         still get the event name as text. alt="" is deliberate — the h1 already
-         announces the name, so describing the image too would say it twice. -->
-    <h1 class="visually-hidden">GIZMOfest 2026</h1>
-    <picture class="logo">
-      <source srcset="assets/logo.webp" type="image/webp">
-      <img src="assets/logo.jpg" width="1600" height="711" alt="" decoding="async">
-    </picture>
-    <p class="tagline"></p>
-    <p class="hero-meta">
-      <span class="tbd">October 12-14, 2026</span>
-      <span class="sep">·</span>
-      <span class="tbd">Flatiron Institute, New York, NY</span>
-    </p>
-  </div>
-</header>
+  <aside class="panel" id="top">
+    <div class="panel-inner">
+      <!-- The logo is the wordmark, so the <h1> is visually hidden rather than
+           deleted: screen readers, search engines, and the print stylesheet all
+           still get the event name as text. alt="" is deliberate — the h1 already
+           announces the name, so describing the image too would say it twice. -->
+      <h1 class="visually-hidden">GIZMOfest 2026</h1>
+      <picture class="logo">
+        <source srcset="assets/logo.webp" type="image/webp">
+        <img src="assets/logo.jpg" width="1600" height="711" alt="" decoding="async">
+      </picture>
 
-<main class="wrap">
+      <!-- Optional one-line strapline. Hidden automatically while it is empty. -->
+      <p class="tagline"></p>
 
-  <section id="rationale">
-    <h2>Scientific Rationale</h2>
-    <!-- ===================================================================
-         PASTE THE RATIONALE HERE.
-         One <p>…</p> per paragraph. Delete the placeholder <p> below.
-         <ul>/<li>, <em>, <strong> and <a href="..."> are all styled already,
-         so you can paste text containing those without touching style.css.
-         =================================================================== -->
-    <p class="tbd">TBD — scientific rationale goes here.</p>
-  </section>
+      <p class="hero-meta">
+        <span class="hero-date">October 12&ndash;14, 2026</span>
+        <span class="hero-place">Flatiron Institute, New York, NY</span>
+      </p>
 
-  <section id="dates">
-    <h2>Important Dates</h2>
-    <dl class="dates">
-      <!-- <dt>RSVP opens</dt>
-      <dd><span class="tbd">TBD</span></dd> -->
+      <nav class="section-nav" aria-label="Sections">
+        <ul>
+          <li><a href="#rationale">Scientific Rationale</a></li>
+          <li><a href="#dates">Important Dates</a></li>
+          <li><a href="#programme">Programme</a></li>
+          <li><a href="#venue">Venue &amp; Travel</a></li>
+          <li><a href="#RSVP">RSVP</a></li>
+          <li><a href="#contact">Organisers &amp; Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </aside>
 
-      <dt>Abstract deadline</dt>
-      <dd><span class="tbd">August 15, 2026</span></dd>
+  <main class="content">
 
-      <dt>RSVP deadline</dt>
-      <dd><span class="tbd">August 15, 2026</span></dd>
+    <section id="rationale">
+      <h2>Scientific Rationale</h2>
+      <!-- ===================================================================
+           PASTE THE RATIONALE HERE.
+           One <p>…</p> per paragraph. Delete the placeholder <p> below.
+           <ul>/<li>, <em>, <strong> and <a href="..."> are all styled already,
+           so you can paste text containing those without touching style.css.
+           =================================================================== -->
+      <p class="tbd">TBD — scientific rationale goes here.</p>
+    </section>
 
-      <dt>Programme announced</dt>
-      <dd><span class="tbd">August 20, 2026</span></dd>
+    <section id="dates">
+      <h2>Important Dates</h2>
+      <dl class="dates">
+        <!-- <dt>RSVP opens</dt>
+        <dd><span class="tbd">TBD</span></dd> -->
 
-      <dt>Meeting</dt>
-      <dd><span class="tbd">October 12-14, 2026</span></dd>
-    </dl>
-  </section>
+        <dt>Abstract deadline</dt>
+        <dd>August 15, 2026</dd>
 
-  <section id="programme">
-    <h2>Programme</h2>
-    <p>The full programme will be posted here once the schedule is finalised.</p>
-    <!-- ===================================================================
-         TO PUBLISH THE SCHEDULE:
-           1. Save the PDF as  programme/gizmofest-programme.pdf
-           2. Delete the <p> above, and uncomment the block below
-              (remove the line with the opening comment marker and the
-               line with the closing marker).
-           3. git add -A && git commit -m "Post programme" && git push
+        <dt>RSVP deadline</dt>
+        <dd>August 15, 2026</dd>
 
-    <p><a class="button" href="programme/gizmofest-programme.pdf">Download the programme (PDF)</a></p>
+        <dt>Programme announced</dt>
+        <dd>August 20, 2026</dd>
 
-         =================================================================== -->
-  </section>
+        <dt>Meeting</dt>
+        <dd>October 12&ndash;14, 2026</dd>
+      </dl>
+    </section>
 
-  <section id="venue">
-    <h2>Venue &amp; Travel</h2>
-    <p class="address">
-      <span class="tbd">Flatiron Institute</span><br>
-      <span class="tbd">162 Fifth Avenue</span><br>
-      <span class="tbd">New York, NY 10010, USA</span>
-    </p>
-    <h3>Getting there</h3>
-    <p class="tbd">LGA (LaGuardia Airport), JFK (John F. Kennedy Airport), EWR (Newark Liberty International Airport)</p>
-    <!-- <h3>Accommodation</h3>
-    <p class="tbd">TBD — suggested hotels, any reserved block, booking deadline.</p> -->
-  </section>
+    <section id="programme">
+      <h2>Programme</h2>
+      <p>The full programme will be posted here once the schedule is finalised.</p>
+      <!-- ===================================================================
+           TO PUBLISH THE SCHEDULE:
+             1. Save the PDF as  programme/gizmofest-programme.pdf
+             2. Delete the <p> above, and uncomment the block below
+                (remove the line with the opening comment marker and the
+                 line with the closing marker).
+             3. git add -A && git commit -m "Post programme" && git push
 
-  <section id="RSVP">
-    <h2>RSVP</h2>
-    <p>
-      Please use the form below to RSVP so we can arrange lunch accordingly and for all guests to be registered with security. 
-      Please RSVP by <span class="tbd">August 15, 2026</span>. There is no registration fee.
-    </p>
-    <!-- Replace href="#" with the RSVP form URL (Google Form, Indico, …)
-         and delete the class="disabled" attribute to activate the button. -->
-    <p><a class="button disabled" href="#">Register <span class="tbd">TBD — form link</span></a></p>
-  </section>
+      <p><a class="button" href="programme/gizmofest-programme.pdf">Download the programme (PDF)</a></p>
 
-  <section id="contact">
-    <h2>Organisers &amp; Contact</h2>
-    <!-- <h3>Scientific Organising Committee</h3>
-    <ul class="people">
-      <li class="tbd">TBD — name (institution)</li>
-      <li class="tbd">TBD — name (institution)</li>
-    </ul> -->
-    <h3>Local Organising Committee</h3>
-    <ul class="people">
-      <li class="tbd">Shivan Khullar (CCA, Flatiron Institute)</li>
-      <li class="tbd">Mike Grudić (CCA, Flatiron Institute)</li>
-      <li class="tbd">Kristen Camputaro (Admin, CCA, Flatiron Institute)</li>
-    </ul>
-    <h3>Questions? Contact:</h3>
-    <p>
-      <!-- Replace both the href and the visible text with the real address. -->
-      <a href="mailto:skhullar@flatironinstitute.org" class="tbd">Email (Shivan Khullar)</a> &middot;
-      <a href="mailto:kcamputaro@flatironinstitute.org" class="tbd">Email (Kristen Camputaro)</a>
-    </p>
-  </section>
+           =================================================================== -->
+    </section>
 
-</main>
+    <section id="venue">
+      <h2>Venue &amp; Travel</h2>
+      <p class="address">
+        Flatiron Institute<br>
+        162 Fifth Avenue<br>
+        New York, NY 10010, USA
+      </p>
+      <h3>Getting there</h3>
+      <p>LGA (LaGuardia Airport), JFK (John F. Kennedy Airport), EWR (Newark Liberty International Airport)</p>
+      <!-- <h3>Accommodation</h3>
+      <p class="tbd">TBD — suggested hotels, any reserved block, booking deadline.</p> -->
+    </section>
 
-<footer>
-  <div class="wrap">
-    <!-- The footer is a good place to include copyright information, a link to the website's terms of service, or a list of related resources. -->
-    <p>GIZMOfest 2026 &middot; Logo by Hector Afonso Cruz &middot; last updated <span class="tbd">TBD</span></p>
-  </div>
-</footer>
+    <section id="RSVP">
+      <h2>RSVP</h2>
+      <p>
+        Please use the form below to RSVP so we can arrange lunch accordingly and for all guests to be registered with security.
+        Please RSVP by August 15, 2026. There is no registration fee.
+      </p>
+      <!-- Replace href="#" with the RSVP form URL (Google Form, Indico, …)
+           and delete the class="disabled" attribute to activate the button. -->
+      <p><a class="button disabled" href="#">Register <span class="tbd">TBD — form link</span></a></p>
+    </section>
+
+    <section id="contact">
+      <h2>Organisers &amp; Contact</h2>
+      <!-- <h3>Scientific Organising Committee</h3>
+      <ul class="people">
+        <li class="tbd">TBD — name (institution)</li>
+        <li class="tbd">TBD — name (institution)</li>
+      </ul> -->
+      <h3>Local Organising Committee</h3>
+      <ul class="people">
+        <li>Shivan Khullar (CCA, Flatiron Institute)</li>
+        <li>Mike Grudić (CCA, Flatiron Institute)</li>
+        <li>Kristen Camputaro (Admin, CCA, Flatiron Institute)</li>
+      </ul>
+      <h3>Questions? Contact:</h3>
+      <p>
+        <a href="mailto:skhullar@flatironinstitute.org">Shivan Khullar</a> &middot;
+        <a href="mailto:kcamputaro@flatironinstitute.org">Kristen Camputaro</a>
+      </p>
+    </section>
+
+    <footer>
+      <!-- The footer is a good place to include copyright information, a link to the website's terms of service, or a list of related resources. -->
+      <p>GIZMOfest 2026 &middot; Logo by Hector Afonso Cruz &middot; last updated <span class="tbd">TBD</span></p>
+    </footer>
+
+  </main>
+
+</div>
 
 </body>
 </html>
