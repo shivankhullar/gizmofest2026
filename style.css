@@ -422,8 +422,9 @@ footer {
   }
 
   /* Big: fills the panel width, and as tall as the leftover vertical space
-     allows. The 32rem subtracted covers everything else in the panel — the two
-     meta lines, the seven section links, and the padding, measured at 497px —
+     allows. The 35.5rem subtracted covers everything else in the panel — the
+     two meta lines, the eight section links, and the padding, measured at 547px
+     with ~21px of headroom left for font-metric differences on other platforms —
      so the logo automatically gives back height on a short window instead of
      pushing the last link out of view. Self-adjusting, which beats guessing
      viewport-height breakpoints.
@@ -436,8 +437,8 @@ footer {
      panel's overflow-y is the safety net in that case. */
   .logo img {
     max-width: 100%;
-    max-height: max(6rem, calc(100vh - 32rem));
-    max-height: max(6rem, calc(100dvh - 32rem));
+    max-height: max(6rem, calc(100vh - 35.5rem));
+    max-height: max(6rem, calc(100dvh - 35.5rem));
     object-fit: contain;
     object-position: left center;
   }
@@ -482,10 +483,11 @@ footer {
   .hero-meta { margin-top: 0.75rem; font-size: 1rem; }
   .section-nav { margin-top: 1rem; }
   .section-nav a { padding: 0.15rem 0 0.15rem 0.9rem; font-size: 0.9375rem; }
-  /* This tier trims the overhead to ~400px, so the logo can keep more height. */
+  /* This tier trims the overhead, so the logo can keep more height than the
+     main rule would allow. */
   .logo img {
-    max-height: max(4rem, calc(100vh - 28rem));
-    max-height: max(4rem, calc(100dvh - 28rem));
+    max-height: max(4rem, calc(100vh - 31rem));
+    max-height: max(4rem, calc(100dvh - 31rem));
   }
 }
 

@@ -24,17 +24,26 @@ Two columns, defined in the `@media (min-width: 62rem)` block of `style.css`:
 Below 62rem (992px) the grid collapses to a single column: the panel sits at the
 top with the section links as a wrapped row, and the content follows underneath.
 
-The logo's height is `calc(100dvh - 32rem)` — the 32rem is the measured height of
-everything else in the panel (two meta lines, seven section links, padding), so
-the logo automatically gives back space on a short window instead of pushing the
-last section link out of view.
+The logo's height is `calc(100dvh - 35.5rem)` — the 35.5rem is the measured
+height of everything else in the panel (two meta lines, eight section links,
+padding: 547px, plus ~21px headroom), so the logo automatically gives back space
+on a short window instead of pushing the last section link out of view.
 
-**If you add or remove section links, this number has to move with them** —
-roughly 2.5rem per link, but measure rather than assume: the last change needed
-3.5rem, not 2.5rem. The test is that `.panel-inner` never needs to scroll
+**If you add or remove section links, this number has to move with them.**
+Roughly 2.5rem per link, but *measure, don't assume* — past changes have needed
+3.5rem. To measure, run this in the browser console and round up:
+
+```js
+const I = document.querySelector('.panel-inner'), L = document.querySelector('.logo');
+I.style.height = 'auto'; I.style.position = 'static'; L.style.display = 'none';
+console.log(I.offsetHeight + 'px =', (I.offsetHeight / 16).toFixed(2) + 'rem');
+location.reload();
+```
+
+The test is that `.panel-inner` never needs to scroll
 (`scrollHeight == clientHeight`) at every window height, checked down to
-1024×600. There is a second, smaller constant in the
-`(max-height: 40rem)` block for short windows.
+1024×600. There is a second, smaller constant in the `(max-height: 40rem)` block
+for short windows — move that one too.
 
 ## The logo
 
