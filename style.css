@@ -364,11 +364,11 @@ footer {
   }
 
   /* Big: fills the panel width, and as tall as the leftover vertical space
-     allows. The 28rem subtracted is the measured height of everything else in
-     the panel — the two meta lines, the six section links, and the padding came
-     to 439px — so the logo automatically gives back height on a short window
-     instead of pushing the last link out of view. Self-adjusting, which beats
-     guessing viewport-height breakpoints.
+     allows. The 32rem subtracted covers everything else in the panel — the two
+     meta lines, the seven section links, and the padding, measured at 497px —
+     so the logo automatically gives back height on a short window instead of
+     pushing the last link out of view. Self-adjusting, which beats guessing
+     viewport-height breakpoints.
 
      If you add or remove section links, this number needs to move with them:
      roughly 2.5rem per link. The check is that .panel-inner never scrolls, i.e.
@@ -378,8 +378,8 @@ footer {
      panel's overflow-y is the safety net in that case. */
   .logo img {
     max-width: 100%;
-    max-height: max(6rem, calc(100vh - 28rem));
-    max-height: max(6rem, calc(100dvh - 28rem));
+    max-height: max(6rem, calc(100vh - 32rem));
+    max-height: max(6rem, calc(100dvh - 32rem));
     object-fit: contain;
     object-position: left center;
   }
@@ -426,8 +426,8 @@ footer {
   .section-nav a { padding: 0.15rem 0 0.15rem 0.9rem; font-size: 0.9375rem; }
   /* This tier trims the overhead to ~400px, so the logo can keep more height. */
   .logo img {
-    max-height: max(4rem, calc(100vh - 26rem));
-    max-height: max(4rem, calc(100dvh - 26rem));
+    max-height: max(4rem, calc(100vh - 28rem));
+    max-height: max(4rem, calc(100dvh - 28rem));
   }
 }
 
