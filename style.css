@@ -190,16 +190,35 @@ p:last-child { margin-bottom: 0; }
 a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
 a:hover { color: var(--accent-dk); }
 
-/* Prose inside the rationale, styled up-front so pasted text needs no CSS work. */
-#rationale ul,
-#rationale ol {
+/* Prose lists anywhere in the content column. `.people` opts out — it has its
+   own bare, ruled style further down. */
+.content ol,
+.content ul:not(.people) {
   margin: 0 0 1.1rem;
   padding-left: 1.35rem;
 }
 
-#rationale li { margin-bottom: 0.4rem; }
-#rationale em { font-style: italic; }
-#rationale strong { font-weight: 650; }
+/* Scoped away from .people so its tight dotted rules keep their spacing. */
+.content ol > li,
+.content ul:not(.people) > li { margin-bottom: 0.4rem; }
+
+.content ol > li:last-child,
+.content ul:not(.people) > li:last-child { margin-bottom: 0; }
+
+/* Nested list — the agenda's discussion topics sit under a parent bullet. */
+.content li > ul,
+.content li > ol {
+  margin: 0.4rem 0 0.6rem;
+}
+
+.content li > ul { list-style-type: circle; }
+
+.content em { font-style: italic; }
+.content strong { font-weight: 650; }
+
+/* Numbered lists read better with the marker held slightly apart. */
+.content ol { padding-left: 1.5rem; }
+.content ol > li { padding-left: 0.15rem; }
 
 /* ---------- important dates ---------- */
 

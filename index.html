@@ -70,13 +70,29 @@
 
     <section id="rationale">
       <h2>Scientific Rationale</h2>
-      <!-- ===================================================================
-           PASTE THE RATIONALE HERE.
-           One <p>…</p> per paragraph. Delete the placeholder <p> below.
-           <ul>/<li>, <em>, <strong> and <a href="..."> are all styled already,
-           so you can paste text containing those without touching style.css.
-           =================================================================== -->
-      <p class="tbd">TBD — scientific rationale goes here.</p>
+      <p>Our scientific motivations for this meeting are:</p>
+      <ol>
+        <li>
+          This would be the first-ever GIZMO community meeting, long overdue
+          given the code&rsquo;s growth and reach.
+        </li>
+        <li>
+          Multiple branches of the code have diverged significantly; it would be
+          valuable to compare notes, share numerical methods, and explore
+          opportunities to combine methods.
+        </li>
+        <li>
+          We would like to establish a comprehensive unit-testing framework
+          &mdash; a standard suite of tests required for every PR or set of
+          commits &mdash; to make catching and fixing bugs faster and more
+          systematic.
+        </li>
+        <li>
+          As the community moves toward GPU computing, now is the right moment
+          to make informed, collective decisions about the architecture and
+          direction of a GPU-native version.
+        </li>
+      </ol>
     </section>
 
     <section id="dates">
@@ -101,7 +117,25 @@
 
     <section id="programme">
       <h2>Programme</h2>
-      <p>The full programme will be posted here once the schedule is finalised.</p>
+
+      <h3>Tentative agenda</h3>
+      <ul>
+        <li>Short (~15 min), tutorial-style talks from attendees on what they have been developing</li>
+        <li>Collaborative unit-test hacking sessions</li>
+        <li>
+          Focused discussion sessions on:
+          <ul>
+            <li>Quality-of-life improvements, particularly in the context of the evolving GPU version</li>
+            <li>GPU strategies: methods, optimizations, and portability</li>
+            <li>Load balancing for extreme dynamic range problems</li>
+            <li>Possible architectures for a next-generation code</li>
+            <li>Community communication infrastructure: establishing a dedicated forum or channel to replace the now-dormant Google Group</li>
+            <li>Physics wish-list: what do we want to simulate with GIZMO that is currently out of reach, either because the physics is absent from the main code or is siloed in a single branch?</li>
+          </ul>
+        </li>
+      </ul>
+
+      <p>The full schedule will be posted here once it is finalised.</p>
       <!-- ===================================================================
            TO PUBLISH THE SCHEDULE:
              1. Save the PDF as  programme/gizmofest-programme.pdf
