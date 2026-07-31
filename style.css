@@ -287,8 +287,24 @@ a:hover { color: var(--accent-dk); }
 }
 
 .people li {
-  padding: 0.3rem 0;
+  padding: 0.4rem 0;
   border-bottom: 1px dotted var(--rule);
+}
+
+/* Affiliation sits after the name, quieter, so the clickable name reads first.
+   Drops to its own line on narrow screens rather than crowding the name. */
+.affil {
+  color: var(--ink-soft);
+  font-size: 0.9375rem;
+}
+
+.affil::before {
+  content: "\2014\00a0";   /* em dash + non-breaking space */
+}
+
+@media (max-width: 30rem) {
+  .affil { display: block; }
+  .affil::before { content: none; }
 }
 
 .people li:last-child { border-bottom: 0; }
