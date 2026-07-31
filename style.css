@@ -190,20 +190,20 @@ p:last-child { margin-bottom: 0; }
 a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
 a:hover { color: var(--accent-dk); }
 
-/* Prose lists anywhere in the content column. `.people` opts out — it has its
-   own bare, ruled style further down. */
+/* Prose lists anywhere in the content column. `.people` and `.routes` opt out —
+   both have their own bare, tighter styles further down. */
 .content ol,
-.content ul:not(.people) {
+.content ul:not(.people):not(.routes) {
   margin: 0 0 1.1rem;
   padding-left: 1.35rem;
 }
 
-/* Scoped away from .people so its tight dotted rules keep their spacing. */
+/* Scoped away from the opt-outs so their tighter spacing survives. */
 .content ol > li,
-.content ul:not(.people) > li { margin-bottom: 0.4rem; }
+.content ul:not(.people):not(.routes) > li { margin-bottom: 0.4rem; }
 
 .content ol > li:last-child,
-.content ul:not(.people) > li:last-child { margin-bottom: 0; }
+.content ul:not(.people):not(.routes) > li:last-child { margin-bottom: 0; }
 
 /* Nested list — the agenda's discussion topics sit under a parent bullet. */
 .content li > ul,
@@ -244,6 +244,41 @@ a:hover { color: var(--accent-dk); }
 /* ---------- misc content blocks ---------- */
 
 .address { line-height: 1.6; }
+
+/* A short lead-in immediately above a tight list — pulled in so the two read as
+   one block instead of two separated ones. */
+.lead-in { margin-bottom: 0.5rem; }
+
+/* Airport routes. Deliberately tighter than a prose list: no bullets, no
+   paragraph margins, just the code, the full name, and the route on one line.
+   Each line wraps as a unit on narrow screens rather than breaking mid-name. */
+.routes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.routes li {
+  margin: 0;
+  padding: 0.25rem 0;
+  line-height: 1.5;
+}
+
+/* No nowrap here: "EWR (Newark Liberty International Airport)" is wider than a
+   320px screen and would push the page sideways. It wraps instead. */
+.route-from {
+  font-weight: 600;
+}
+
+.route-full {
+  font-weight: 400;
+  color: var(--ink-soft);
+}
+
+.route-via {
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
 
 .people {
   list-style: none;
