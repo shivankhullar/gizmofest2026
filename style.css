@@ -545,10 +545,24 @@ footer {
 
   /* The logo is a dark-background JPEG, so drop it and un-hide the <h1> text. */
   .logo,
-  .section-nav,
-  .button { display: none; }
+  .section-nav { display: none; }
 
-  .visually-hidden {
+  /* Buttons stay, but as plain text — a filled colour block wastes ink and reads
+     as inert on paper. They are kept rather than hidden because the a[href^=http]
+     rule below prints the URL after them, which is the only way a reader holding
+     a printout can reach the forms. */
+  .button {
+    background: none !important;
+    color: #000 !important;
+    padding: 0;
+    border-radius: 0;
+    font-weight: 600;
+  }
+
+  /* Scoped to the h1 on purpose. This un-hides the event name to stand in for
+     the dropped logo — but .visually-hidden is also used for the "(opens in a
+     new tab)" notes on buttons, and an unscoped rule prints those at 20pt. */
+  h1.visually-hidden {
     position: static;
     width: auto; height: auto;
     margin: 0;

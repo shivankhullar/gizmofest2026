@@ -147,7 +147,7 @@
                  line with the closing marker).
              3. git add -A && git commit -m "Post programme" && git push
 
-      <p><a class="button" href="programme/gizmofest-programme.pdf">Download the programme (PDF)</a></p>
+      <p><a class="button" href="programme/gizmofest-programme.pdf" target="_blank" rel="noopener">Download the programme (PDF)<span class="visually-hidden"> (opens in a new tab)</span></a></p>
 
            =================================================================== -->
     </section>
@@ -158,9 +158,11 @@
         We&rsquo;re now accepting talk contributions for the meeting. Please fill
         out the form below by August 10, 2026.
       </p>
-      <!-- Replace href="#" with the abstract form URL, delete the <span> holding
-           the TBD text, and remove class="disabled" to activate the button. -->
-      <p><a class="button disabled" href="#">Submit an abstract <span class="tbd">TBD — form link</span></a></p>
+      <!-- rel="noopener" alongside target="_blank": without it the opened page
+           gets a handle back to this one via window.opener. The hidden span is
+           for screen readers, which otherwise give no warning that the link
+           jumps to a new tab. -->
+      <p><a class="button" href="https://docs.google.com/forms/d/e/1FAIpQLScCzD5AN1m4fSm69hMS8AwU8v5CI1a5kWTviSy_qYTynocaPw/viewform" target="_blank" rel="noopener">Submit an abstract<span class="visually-hidden"> (opens in a new tab)</span></a></p>
       <p>
         There is no panel for voting on abstracts: if you submit an abstract,
         you&rsquo;ll automatically be given a talk slot (unless you&rsquo;d prefer
@@ -175,9 +177,10 @@
         Please use the form below to RSVP so we can arrange lunch accordingly and for all guests to be registered with security.
         Please RSVP by August 15, 2026. There is no registration fee.
       </p>
-      <!-- Replace href="#" with the RSVP form URL (Google Form, Indico, …)
-           and delete the class="disabled" attribute to activate the button. -->
-      <p><a class="button disabled" href="#">Register <span class="tbd">TBD — form link</span></a></p>
+      <!-- To activate: put the RSVP form URL in href, then delete both
+           class="disabled" and the <span class="tbd"> holding the TBD text.
+           target/rel are already set, matching the abstract button. -->
+      <p><a class="button disabled" href="#" target="_blank" rel="noopener">Register <span class="tbd">TBD — form link</span><span class="visually-hidden"> (opens in a new tab)</span></a></p>
     </section>
 
     <section id="venue">
