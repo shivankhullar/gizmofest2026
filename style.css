@@ -291,6 +291,48 @@ a:hover { color: var(--accent-dk); }
   border-bottom: 1px dotted var(--rule);
 }
 
+/* The <symbol> holder. Takes no space and is never painted itself, but must not
+   be display:none — that stops <use> resolving in some browsers. */
+.icon-defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+/* Icon + name behave as one unit, so the name never wraps away from its
+   envelope. The underline moves onto .name because a link-wide underline would
+   run under the icon too and look like a mistake. */
+.people a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  text-decoration: none;
+}
+
+.people a .name {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+.people a:hover .name,
+.people a:focus-visible .name { text-decoration-thickness: 2px; }
+
+.icon-mail {
+  width: 1.05em;
+  height: 1.05em;
+  flex: none;             /* never let the envelope squash on a narrow screen */
+  fill: none;
+  stroke: currentColor;   /* follows the link colour, hover included */
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.8;
+}
+
+.people a:hover .icon-mail { opacity: 1; }
+
 /* Affiliation sits after the name, quieter, so the clickable name reads first.
    Drops to its own line on narrow screens rather than crowding the name. */
 .affil {

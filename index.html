@@ -207,23 +207,45 @@
       </ul> -->
       <h3>Local Organising Committee</h3>
       <!-- Names are the mailto links, so there is one place to update an address
-           rather than two. The lead-in is what tells a reader they are clickable
-           at all — without it the underline is the only hint. -->
-      <p class="lead-in">Questions? Email any of us:</p>
+           rather than two. The envelope icon marks them as contactable without
+           relying on colour alone. -->
+
+      <!-- The envelope, defined once and referenced by each row below. Inline
+           rather than an image file so it costs no extra request and inherits
+           the link colour, hover included. To change the icon, edit this one
+           symbol. aria-hidden throughout: the name and the mailto: already say
+           what the link does, so announcing "envelope" would just be noise. -->
+      <svg class="icon-defs" aria-hidden="true" focusable="false">
+        <symbol id="icon-mail" viewBox="0 0 24 24">
+          <rect x="2.5" y="4.5" width="19" height="15" rx="2.5"></rect>
+          <path d="M3 7.5 12 13.5 21 7.5"></path>
+        </symbol>
+      </svg>
+
       <ul class="people">
         <li>
-          <a href="mailto:skhullar@flatironinstitute.org">Shivan Khullar</a>
+          <a href="mailto:skhullar@flatironinstitute.org">
+            <svg class="icon-mail" aria-hidden="true" focusable="false"><use href="#icon-mail"></use></svg>
+            <span class="name">Shivan Khullar</span>
+          </a>
           <span class="affil">CCA, Flatiron Institute</span>
         </li>
         <li>
-          <a href="mailto:mgrudic@flatironinstitute.org">Mike Grudić</a>
+          <a href="mailto:mgrudic@flatironinstitute.org">
+            <svg class="icon-mail" aria-hidden="true" focusable="false"><use href="#icon-mail"></use></svg>
+            <span class="name">Mike Grudić</span>
+          </a>
           <span class="affil">CCA, Flatiron Institute</span>
         </li>
         <li>
-          <a href="mailto:kcamputaro@flatironinstitute.org">Kristen Camputaro</a>
+          <a href="mailto:kcamputaro@flatironinstitute.org">
+            <svg class="icon-mail" aria-hidden="true" focusable="false"><use href="#icon-mail"></use></svg>
+            <span class="name">Kristen Camputaro</span>
+          </a>
           <span class="affil">Admin, CCA, Flatiron Institute</span>
         </li>
       </ul>
+      <p class="lead-in">Feel free to reach out if you have any questions!</p>
     </section>
 
     <footer>
