@@ -95,6 +95,19 @@ The **Scientific Rationale** section is empty on purpose — paste the text into
 placeholder paragraph. Bullet lists, italics, bold, and links inside that section
 are already styled, so no CSS changes are needed.
 
+## The "last updated" date
+
+Automatic — don't edit it by hand. The small script at the bottom of
+`index.html` reads `document.lastModified`, which is the `Last-Modified` header
+when the page is served (GitHub Pages sets this on deploy) or the file's mtime
+when opened from disk. If scripting is unavailable the whole clause stays hidden
+rather than showing a stale date, so the footer just reads
+"GIZMOfest 2026 · Logo by Hector Afonso Cruz".
+
+It reflects when the site was last **deployed**, not when the wording last
+changed — so an unrelated push moves the date too. If that ever becomes a
+problem, stamp the real commit date in with a build step instead.
+
 ## Post the programme PDF
 
 1. Save the PDF as `programme/gizmofest-programme.pdf`.

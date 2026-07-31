@@ -161,12 +161,49 @@
 
     <footer>
       <!-- The footer is a good place to include copyright information, a link to the website's terms of service, or a list of related resources. -->
-      <p>GIZMOfest 2026 &middot; Logo by Hector Afonso Cruz &middot; last updated <span class="tbd">TBD</span></p>
+      <!-- The "last updated" clause starts hidden and is filled in by the script
+           at the bottom of this file. Nothing to maintain by hand. If scripting
+           is off, or the date cannot be read, the clause simply stays hidden
+           rather than showing a stale or wrong date. -->
+      <p>GIZMOfest 2026 &middot; Logo by Hector Afonso Cruz<span id="last-updated" hidden> &middot; last updated <time></time></span></p>
     </footer>
 
   </main>
 
 </div>
+
+<!-- The only script on the page. Fills in the footer's "last updated" date from
+     document.lastModified, which is the file's own timestamp: the Last-Modified
+     header when served over HTTP (GitHub Pages sets this when it deploys), or the
+     file's mtime when opened straight off disk. So it keeps itself current with
+     no build step and nothing to remember on release.
+
+     Caveat worth knowing: it tracks when the site was last *deployed*, not when
+     the wording last changed, so an unrelated push moves the date too. If that
+     ever matters, stamp the real commit date in at build time instead. -->
+<script>
+(function () {
+  var wrap = document.getElementById('last-updated');
+  if (!wrap) return;
+
+  var when = new Date(document.lastModified);
+  // Some browsers hand back an unparseable value, or the epoch, when there is
+  // no timestamp to report. Leave the clause hidden in that case.
+  if (isNaN(when.getTime()) || when.getTime() === 0) return;
+
+  var el = wrap.querySelector('time');
+  // Build the machine-readable date from local parts, not toISOString(), which
+  // converts to UTC and would disagree with the text below it near midnight.
+  var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+  el.dateTime = when.getFullYear() + '-' +
+                pad(when.getMonth() + 1) + '-' +
+                pad(when.getDate());
+  el.textContent = when.toLocaleDateString(undefined, {
+    day: 'numeric', month: 'long', year: 'numeric'
+  });
+  wrap.hidden = false;
+})();
+</script>
 
 </body>
 </html>
